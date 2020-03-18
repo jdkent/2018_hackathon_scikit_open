@@ -1,0 +1,10 @@
+#$ -pe smp 30
+#$ -q UI
+#$ -m bea
+#$ -M james-kent@uiowa.edu
+#$ -o /Users/jdkent/Projects/2018_hackathon-scikit/code/
+#$ -e /Users/jdkent/Projects/2018_hackathon-scikit/code/
+
+cd /Users/jdkent/Projects/2018_hackathon-scikit/code/
+source activate hackuiowa
+/Users/jdkent/Projects/2018_hackathon-scikit/code/hack_test.py

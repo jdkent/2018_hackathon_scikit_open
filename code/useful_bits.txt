@@ -1,0 +1,19 @@
+## python code for renaming each sheet as a csv:
+
+import pandas as pd
+import re
+all_sheets = pd.read_excel('Factor_Analysis_Scores.xlsx', sheet_name=None, converters={'ID': lambda x: str(x).zfill(4)})
+pattern = re.compile(r"(?P<g>[A-Za-z]{,3})_(?P<b>[bih]{2})?.*")
+for name, data in all_sheets.items():
+    if name == 'KEY':
+        continue
+    match = pattern.search(name)
+    my_dict = {k: v for k, v in match.groupdict().items() if v is not None}
+    joiner = ['subs-405']
+    joiner.extend(list(my_dict.values()))
+    out_file = '_'.join(joiner)
+    print(out_file)
+    data.rename({"ID": "id", "Score": "score"}, inplace=True, axis='columns')
+    data.to_csv(out_file + '.csv', index=False)
+
+##
